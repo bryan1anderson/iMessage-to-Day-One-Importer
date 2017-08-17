@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9336C0F41F3904EC0045B1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336C0F31F3904EC0045B1C4 /* AppDelegate.swift */; };
+		9336C0F61F3904EC0045B1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9336C0F51F3904EC0045B1C4 /* Assets.xcassets */; };
+		9336C0F91F3904EC0045B1C4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9336C0F71F3904EC0045B1C4 /* MainMenu.xib */; };
+		9336C1021F39089C0045B1C4 /* MessageImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336C1011F39089C0045B1C4 /* MessageImporter.swift */; };
+		9336C1041F3908EC0045B1C4 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336C1031F3908EC0045B1C4 /* Files.swift */; };
+		938A32261F3A129F00F1B28C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A32251F3A129F00F1B28C /* Group.swift */; };
+		938A32281F3A12B000F1B28C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A32271F3A12B000F1B28C /* Message.swift */; };
+		938A322A1F3A167300F1B28C /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A32291F3A167300F1B28C /* Global.swift */; };
+		938A322C1F3A4AC800F1B28C /* ContactsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */; };
+		938A322E1F3A695200F1B28C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A322D1F3A695200F1B28C /* Chat.swift */; };
+		CFF871AE4830CA8ADC5C5C08 /* Pods_iMessage_Importer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA05F743B2513E39F702749 /* Pods_iMessage_Importer.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6AA05F743B2513E39F702749 /* Pods_iMessage_Importer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMessage_Importer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9336C0F01F3904EC0045B1C4 /* iMessage Importer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMessage Importer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9336C0F31F3904EC0045B1C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9336C0F51F3904EC0045B1C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9336C0F81F3904EC0045B1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9336C0FA1F3904EC0045B1C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9336C0FB1F3904EC0045B1C4 /* iMessage_Importer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMessage_Importer.entitlements; sourceTree = "<group>"; };
+		9336C1011F39089C0045B1C4 /* MessageImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageImporter.swift; sourceTree = "<group>"; };
+		9336C1031F3908EC0045B1C4 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		938A32251F3A129F00F1B28C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		938A32271F3A12B000F1B28C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		938A32291F3A167300F1B28C /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsProtocol.swift; sourceTree = "<group>"; };
+		938A322D1F3A695200F1B28C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		BD78AA0DC8CBC434581702A6 /* Pods-iMessage Importer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMessage Importer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer.debug.xcconfig"; sourceTree = "<group>"; };
+		BEE901889E8FEF7011A81BEE /* Pods-iMessage Importer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMessage Importer.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9336C0ED1F3904EC0045B1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF871AE4830CA8ADC5C5C08 /* Pods_iMessage_Importer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C43FEE4C1B810110333DBD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD78AA0DC8CBC434581702A6 /* Pods-iMessage Importer.debug.xcconfig */,
+				BEE901889E8FEF7011A81BEE /* Pods-iMessage Importer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9336C0E71F3904EC0045B1C4 = {
+			isa = PBXGroup;
+			children = (
+				9336C0F21F3904EC0045B1C4 /* iMessage Importer */,
+				9336C0F11F3904EC0045B1C4 /* Products */,
+				0C43FEE4C1B810110333DBD5 /* Pods */,
+				FF525CC5F7F56232B0758C64 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9336C0F11F3904EC0045B1C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9336C0F01F3904EC0045B1C4 /* iMessage Importer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9336C0F21F3904EC0045B1C4 /* iMessage Importer */ = {
+			isa = PBXGroup;
+			children = (
+				9336C0F31F3904EC0045B1C4 /* AppDelegate.swift */,
+				9336C1011F39089C0045B1C4 /* MessageImporter.swift */,
+				9336C1031F3908EC0045B1C4 /* Files.swift */,
+				938A32291F3A167300F1B28C /* Global.swift */,
+				938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */,
+				938A32241F3A129100F1B28C /* Model */,
+				9336C0F51F3904EC0045B1C4 /* Assets.xcassets */,
+				9336C0F71F3904EC0045B1C4 /* MainMenu.xib */,
+				9336C0FA1F3904EC0045B1C4 /* Info.plist */,
+				9336C0FB1F3904EC0045B1C4 /* iMessage_Importer.entitlements */,
+			);
+			path = "iMessage Importer";
+			sourceTree = "<group>";
+		};
+		938A32241F3A129100F1B28C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				938A32251F3A129F00F1B28C /* Group.swift */,
+				938A32271F3A12B000F1B28C /* Message.swift */,
+				938A322D1F3A695200F1B28C /* Chat.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FF525CC5F7F56232B0758C64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6AA05F743B2513E39F702749 /* Pods_iMessage_Importer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9336C0EF1F3904EC0045B1C4 /* iMessage Importer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9336C0FE1F3904EC0045B1C4 /* Build configuration list for PBXNativeTarget "iMessage Importer" */;
+			buildPhases = (
+				0F6E5F899D497EF4E94CD6C8 /* [CP] Check Pods Manifest.lock */,
+				9336C0EC1F3904EC0045B1C4 /* Sources */,
+				9336C0ED1F3904EC0045B1C4 /* Frameworks */,
+				9336C0EE1F3904EC0045B1C4 /* Resources */,
+				A8356DE5ED978AA70832F05B /* [CP] Embed Pods Frameworks */,
+				51BB34CE10B35D393EAC09DC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iMessage Importer";
+			productName = "iMessage Importer";
+			productReference = 9336C0F01F3904EC0045B1C4 /* iMessage Importer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9336C0E81F3904EC0045B1C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Bryan Lloyd Anderson";
+				TargetAttributes = {
+					9336C0EF1F3904EC0045B1C4 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+				};
+			};
+			buildConfigurationList = 9336C0EB1F3904EC0045B1C4 /* Build configuration list for PBXProject "iMessage Importer" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9336C0E71F3904EC0045B1C4;
+			productRefGroup = 9336C0F11F3904EC0045B1C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9336C0EF1F3904EC0045B1C4 /* iMessage Importer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9336C0EE1F3904EC0045B1C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9336C0F61F3904EC0045B1C4 /* Assets.xcassets in Resources */,
+				9336C0F91F3904EC0045B1C4 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F6E5F899D497EF4E94CD6C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMessage Importer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51BB34CE10B35D393EAC09DC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8356DE5ED978AA70832F05B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9336C0EC1F3904EC0045B1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				938A322C1F3A4AC800F1B28C /* ContactsProtocol.swift in Sources */,
+				9336C1021F39089C0045B1C4 /* MessageImporter.swift in Sources */,
+				9336C0F41F3904EC0045B1C4 /* AppDelegate.swift in Sources */,
+				938A322A1F3A167300F1B28C /* Global.swift in Sources */,
+				938A32281F3A12B000F1B28C /* Message.swift in Sources */,
+				938A322E1F3A695200F1B28C /* Chat.swift in Sources */,
+				9336C1041F3908EC0045B1C4 /* Files.swift in Sources */,
+				938A32261F3A129F00F1B28C /* Group.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9336C0F71F3904EC0045B1C4 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9336C0F81F3904EC0045B1C4 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9336C0FC1F3904EC0045B1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9336C0FD1F3904EC0045B1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		9336C0FF1F3904EC0045B1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD78AA0DC8CBC434581702A6 /* Pods-iMessage Importer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "iMessage Importer/iMessage_Importer.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QB8FD6939T;
+				INFOPLIST_FILE = "iMessage Importer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bryansapps.iMessage-Importer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9336C1001F3904EC0045B1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEE901889E8FEF7011A81BEE /* Pods-iMessage Importer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "iMessage Importer/iMessage_Importer.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QB8FD6939T;
+				INFOPLIST_FILE = "iMessage Importer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bryansapps.iMessage-Importer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9336C0EB1F3904EC0045B1C4 /* Build configuration list for PBXProject "iMessage Importer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9336C0FC1F3904EC0045B1C4 /* Debug */,
+				9336C0FD1F3904EC0045B1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9336C0FE1F3904EC0045B1C4 /* Build configuration list for PBXNativeTarget "iMessage Importer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9336C0FF1F3904EC0045B1C4 /* Debug */,
+				9336C1001F3904EC0045B1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9336C0E81F3904EC0045B1C4 /* Project object */;
+}
