@@ -19,8 +19,14 @@ Comment again, rebuild and then begin import. Because individual chats are not t
 
 # TODO:
 import picture attatchments
+
 Import specific dates
+
 Move to an async import so the app doesn't become unresponsive during imports
+
 Provide some feedback as to what is importing
+
 Add UI to reset imported dates
-Add way to track indvidual messages threads that have already been imported.. Maybe. Kind of difficult since Day One doesn't allow me to peek in, so I have to create identifiers for each chat and then persist them. 
+
+Add way to track indvidual messages threads that have already been imported.. Maybe. Kind of difficult since Day One 
+doesn't allow me to peek in, so I have to create identifiers for each chat and then persist them. 
