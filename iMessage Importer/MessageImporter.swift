@@ -63,6 +63,7 @@ class MessageImporter {
             let chatMessageJoinTable = Table("chat_message_join")
             let chatID = Expression<Int>("chat_id")
             let messageID = Expression<Int?>("message_id")
+            let itemType = Expression<Int>("item_type")
 //            let groupID = Expression<Int?>("group_id")
             
             //CHAT HANDLE JOIN
@@ -111,7 +112,7 @@ class MessageImporter {
 
                     //                    let midnight = Int(Date().midnight.timeIntervalSince1970)
                     
-                    let messagesQuery = messageTable.filter(messageIDs.contains(rowID)).order(date).filter(handleID != 0).filter(dateColumn >= yesterdayMidnight && dateColumn < midnight)
+                    let messagesQuery = messageTable.filter(messageIDs.contains(rowID)).order(date).filter(itemType == 0).filter(dateColumn >= yesterdayMidnight && dateColumn < midnight)
                     
                     //                    let messagesQuery = messageTable
                     guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return nil }
@@ -121,6 +122,12 @@ class MessageImporter {
                     
                     let chat = Chat(row: chatRow)
                     let messagesArray = messages.flatMap({ Message(row: $0) })
+                    if messagesArray.count == 1,
+                        let first = messagesArray.first,
+                    first.handleID == 0, first.isFromMe == false, first.text == nil {
+                        //THis handles the case with seemingly corrupted messages with a HandleID of 0, that aren't from me
+                        return nil
+                    }
                     let handlesArray = handles?.flatMap({ Handle(row: $0) })
                     let chatMessageJoin = ChatMessageJoin(chat: chat, messages: messagesArray, handles: handlesArray, date: date)
                     return chatMessageJoin
@@ -201,7 +208,7 @@ struct ChatMessageJoin: ContactsProtocol {
             conversationName = self.getNameString(for: contactsArray)
         }
 
-        let title = "Messages with: \(conversationName ?? "UNKNOWN")\n'\'\n'\'"
+        let title = "Messages with: \(conversationName ?? "UNKNOWN")"
         
         var text = ""
         
@@ -212,18 +219,16 @@ struct ChatMessageJoin: ContactsProtocol {
         let messages = self.messages.sorted(by: { $0.date < $1.date })
         for message in messages {
            
-
-            
-            
             
             let handle = self.getHandle(message: message)
             let contact = contacts.first(where: { $0.handle == handle })
             let firstName = contact?.contacts.first?.givenName
             
-            let name = message.isFromMe ? "Me" : firstName ?? handle?.value ?? "UNKNOWN NAME"
+            //if handleID == 0, handle is ME
+            let name = message.handleID == 0 ? "Me" : message.isFromMe ? "Me" : firstName ?? handle?.value ?? "UNKNOWN NAME"
             
             let messageText = message.text ?? ""
-            let line = "\n'\'`\(name)`   \(messageText)\n'\'`\(message.dateString())`\n'\'"
+            let line = "\n `\(name)`   \(messageText) \n `\(message.dateString())` \n "
             text.append(line)
         }
         
@@ -232,12 +237,16 @@ struct ChatMessageJoin: ContactsProtocol {
         if let conversationName = conversationName {
             tags.append(conversationName)
         }
-        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: text)
+        let escapedString = text.replacingOccurrences(of: "\n", with: "\n").replacingOccurrences(of: "“", with: "").replacingOccurrences(of: "”", with: "").replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "")
+
+        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: escapedString)
             completion(entry)
 //        }
         
         
     }
+    
+    
     
     func getContact(handle: Handle) -> Contact {
 

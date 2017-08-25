@@ -21,7 +21,7 @@ struct Chat {
         
         self.id = row[rowIDColumn]
         self.displayName = row[displayNameColumn]
-
+        
     }
 }
 

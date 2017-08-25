@@ -134,9 +134,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.importDatesMenuItem?.isEnabled = false
         
         var startC = DateComponents()
-        startC.year = 2017
-        startC.month = 8
-        startC.day = 14
+        startC.year = 2016
+        startC.month = 1
+        startC.day = 9
         
 //        var endC = DateComponents()
 //        endC.year = 2017
@@ -195,7 +195,10 @@ extension AppDelegate: MessageImporterDelegate {
             let year = c.year else { return nil }
         
         let tags = entry.tags.joined(separator: " ")
-        let command = "/usr/local/bin/dayone2 -j 'iMessages' --tags='\(tags)' --date='\(month)/\(day)/\(year)' new '\(entry.title)' '\(entry.body)'"
+ 
+        let body = "\(entry.title) \(entry.body)"
+
+        let command = "/usr/local/bin/dayone2 -j 'iMessages' --tags='\(tags)' --date='\(month)/\(day)/\(year)' new \'\(body)\'"
         print(command)
         return command
     }
