@@ -2,7 +2,7 @@
 
 The app grabs all the iMessages from Chat.db and begins an import into Day One App
 
-SETUP:
+# SETUP:
 
 `func importMessagesForAllNonImportedDates()` is the method that begins a recursive update for all entries after a certain date
 
@@ -17,7 +17,7 @@ Manually importing the last day will soon be changed to manually importing a spe
 Right now resetting the dates is manual. From `applicationDidFinishLaunching` uncomment `//        self.importedDates = []`
 Comment again, rebuild and then begin import. Because individual chats are not tracked, plan to have duplicates. I've just been erasing all messages and beginning the import process again 
 
-TODO:
+# TODO:
 import picture attatchments
 Import specific dates
 Move to an async import so the app doesn't become unresponsive during imports
