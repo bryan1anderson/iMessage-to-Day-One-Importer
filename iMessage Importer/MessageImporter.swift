@@ -12,6 +12,7 @@ import Contacts
 
 protocol MessageImporterDelegate {
     func didGet(chatMessageJoins: [ChatMessageJoin])
+    func didGet(oldGroupJoins: [GroupMessageMemberJoin])
 }
 
 class MessageImporter {
@@ -26,7 +27,7 @@ class MessageImporter {
     
     init(date: Date) {
         do  {
-            let originFolder = try Folder(path: "/users/Bryan/Library/Messages")
+            let originFolder = try Folder(path: "~/Library/Messages")
             guard let chatDB = try? originFolder.file(named: "chat.db") else { fatalError("unable to find chat.db") }
             self.chatDB = chatDB
             self.date = date
@@ -78,46 +79,51 @@ class MessageImporter {
             let dateColumn = Expression<Int>("date")
 
             
-
+            //Multiply by 1 billion because iMessage upgraded to nanoseconds in iOS 11 and High Sierra,
+            //probably do a check to see if the number is greater than a 1 Billion, if not X by 1 billion
             let yesterdayMidnight = Int(date.yesterdayMidnight.timeIntervalSinceReferenceDate) * 1000000000
             let midnight = Int(date.midnight.timeIntervalSinceReferenceDate) * 1000000000
-
             let messagesQuery = messageTable.filter(dateColumn >= yesterdayMidnight && dateColumn < midnight)
-            
-            //                    let messagesQuery = messageTable
+//
+//            //                    let messagesQuery = messageTable
+            //Get all messages in todays date
+            //This is avoids going through days that don't have messages
             guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return }
             if messages.count <= 0 {
                 print("no messages")
                 return }
             do {
                 let chatsQuery = chatTable
+                //For each chat
                 let chatMessageJoins = try dbs.prepare(chatsQuery).flatMap({ (chatRow) -> ChatMessageJoin? in
                     
                     
                     
                     let id = chatRow[rowID]
-                    
+                    //Find all handles in the chat
                     let chatHandleJoinQuery = chatHandleJoinTable.filter(chatID == id).select(handleID)
                     let handleIDs = (try? dbs.prepare(chatHandleJoinQuery).flatMap({ $0[handleID] })) ?? []
-                    
                     let handlesQuery = handlesTable.filter(handleIDs.contains(rowID))
-                    
                     let handles = try? dbs.prepare(handlesQuery).flatMap({ $0 })
                     
+                    //Find all message ID's in the CHAT
                     let chatMessageJoinQuery = chatMessageJoinTable.filter(chatID == id).select(messageID)
                     guard let messageIDs = try? dbs.prepare(chatMessageJoinQuery).flatMap({ $0[messageID] }) else { return nil }
 //                    print(messageIDs)
                     
                     
-
-                    //                    let midnight = Int(Date().midnight.timeIntervalSince1970)
-                    
+                    //Find all messages for the messageIDs
+                    //Order them by most recent
+                    //Filter by todays date
+                    //Filter by itemType == 0. I don't know what other item_types do, but they seem to not be readable/viewable
                     let messagesQuery = messageTable.filter(messageIDs.contains(rowID)).order(date).filter(itemType == 0).filter(dateColumn >= yesterdayMidnight && dateColumn < midnight)
                     
-                    //                    let messagesQuery = messageTable
+                    //Get the messages
                     guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return nil }
 //                    let dates = messages.flatMap({ $0[date] })
 //                    print(dates)
+                    
+                    //Don't include this chat if there aren't messages on DATE
                     if messages.count <= 0 { return nil }
                     
                     let chat = Chat(row: chatRow)
@@ -129,10 +135,12 @@ class MessageImporter {
                         return nil
                     }
                     let handlesArray = handles?.flatMap({ Handle(row: $0) })
+                    
+                    //This object is a join for a chat, it's messages, it's handles, and the date.
                     let chatMessageJoin = ChatMessageJoin(chat: chat, messages: messagesArray, handles: handlesArray, date: date)
                     return chatMessageJoin
                 })
-                
+                //Once the flatmap is complete, chatMessageJoins contains all the chats/messages/handles to create an entry on a certain date
                 self.chatMessageJoins = chatMessageJoins
                 
            

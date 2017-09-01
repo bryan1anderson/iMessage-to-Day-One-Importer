@@ -8,6 +8,14 @@
 
 import Foundation
 
+//extension String {
+//    
+//    var cleaned: String {
+//        let cleaned = self.replacingOccurrences(of: "[ |+()-]", with: "", options: [.regularExpression])
+//        return cleaned
+//    }
+//}
+
 extension Array where Element:Equatable {
     func removeDuplicates() -> [Element] {
         var result = [Element]()
