@@ -17,6 +17,7 @@ Resetting the dates will allow messages to be imported on days that have already
 
 # KNOW ISSUES:
 Make sure Don't Sign Code is the selected setting in Build Settings > Code Signing Identity
+When code signing is enabled, it looks like some sandbox restrictions are disabling access to the iMessage DB
 
 # TODO:
 import picture attatchments
