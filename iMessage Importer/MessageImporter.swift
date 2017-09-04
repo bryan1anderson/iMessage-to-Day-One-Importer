@@ -27,7 +27,7 @@ class MessageImporter {
     
     init(date: Date) {
         do  {
-            let originFolder = try Folder(path: "~/Library/Messages")
+            let originFolder = try Folder(path: "/users/Bryan/Library/Messages")
             guard let chatDB = try? originFolder.file(named: "chat.db") else { fatalError("unable to find chat.db") }
             self.chatDB = chatDB
             self.date = date
@@ -151,6 +151,8 @@ class MessageImporter {
             
         } catch {
             print(error)
+            fatalError(error.localizedDescription)
+
         }
     }
     
@@ -236,7 +238,7 @@ struct ChatMessageJoin: ContactsProtocol {
             let name = message.handleID == 0 ? "Me" : message.isFromMe ? "Me" : firstName ?? handle?.value ?? "UNKNOWN NAME"
             
             let messageText = message.text ?? ""
-            let line = "\n `\(name)`   \(messageText) \n `\(message.dateString())` \n "
+            let line = "> \n `\(name)`   \n> \(messageText) \n `\(message.dateString())` \n "
             text.append(line)
         }
         
