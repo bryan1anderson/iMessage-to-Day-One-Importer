@@ -27,7 +27,7 @@ class MessageImporter {
     
     init(date: Date) {
         do  {
-            let originFolder = try Folder(path: "/users/Bryan/Library/Messages")
+            let originFolder = try Folder.home.subfolder(atPath: "/Library/Messages")
             guard let chatDB = try? originFolder.file(named: "chat.db") else { fatalError("unable to find chat.db") }
             self.chatDB = chatDB
             self.date = date

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/ImportViewController.swift"
-            timestampString = "525991647.267549"
+            timestampString = "526238124.475995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "didGet(chatMessageJoins:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -92,19 +92,43 @@
 			isa = PBXGroup;
 			children = (
 				9336C0F31F3904EC0045B1C4 /* AppDelegate.swift */,
-				9336C1011F39089C0045B1C4 /* MessageImporter.swift */,
-				931E71011F51F2D300BE4535 /* SMSImporter.swift */,
-				9336C1031F3908EC0045B1C4 /* Files.swift */,
 				938A32291F3A167300F1B28C /* Global.swift */,
-				938733221F59BCDF00844E16 /* Import */,
-				938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */,
-				938A32241F3A129100F1B28C /* Model */,
+				9336C1031F3908EC0045B1C4 /* Files.swift */,
+				93544DC01F5DC0640080FA88 /* Data */,
+				93544DBF1F5DC0540080FA88 /* View Controllers */,
 				9336C0F51F3904EC0045B1C4 /* Assets.xcassets */,
 				9336C0F71F3904EC0045B1C4 /* MainMenu.xib */,
 				9336C0FA1F3904EC0045B1C4 /* Info.plist */,
 				9336C0FB1F3904EC0045B1C4 /* iMessage_Importer.entitlements */,
 			);
 			path = "iMessage Importer";
+			sourceTree = "<group>";
+		};
+		93544DBF1F5DC0540080FA88 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				938733221F59BCDF00844E16 /* Import */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		93544DC01F5DC0640080FA88 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				93544DC11F5DC0750080FA88 /* Importers */,
+				938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */,
+				938A32241F3A129100F1B28C /* Model */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		93544DC11F5DC0750080FA88 /* Importers */ = {
+			isa = PBXGroup;
+			children = (
+				931E71011F51F2D300BE4535 /* SMSImporter.swift */,
+				9336C1011F39089C0045B1C4 /* MessageImporter.swift */,
+			);
+			name = Importers;
 			sourceTree = "<group>";
 		};
 		938733221F59BCDF00844E16 /* Import */ = {
