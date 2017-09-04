@@ -171,8 +171,11 @@ extension ImportViewController {
             }
         }
 //        self.importDatesMenuItem?.isEnabled = false
-        
-        self.buttonImportAll.isEnabled = true
+        DispatchQueue.main.async {
+            self.labelStatusMessageTitle.stringValue = "Finished importing"
+            self.buttonCancel.isHidden = true
+            self.buttonImportAll.isEnabled = true 
+        }
 
     }
     
