@@ -284,7 +284,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func importOldMessages(date: Date) {
         let importer = SMSImporter(date: date)
         importer.delegate = self
-        importer.importOldDbs()
+        importer.importDbs()
     }
 
     

@@ -6,5 +6,7 @@ target 'iMessage Importer' do
   use_frameworks!
 
   # Pods for iMessage Importer
-  pod 'SQLite.swift', '~> 0.11.3'
+#  pod 'SQLite.swift', '~> 0.11.3'
+  pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift', :branch => 'swift-4'
+
 end
