@@ -2,7 +2,7 @@
 
 The app grabs all the iMessages from Chat.db and begins an import into Day One App
 
-# SETUP:
+## SETUP:
 Create a new Journal in Day One, called `iMessages`
 This app won't work unless you have this Journal inside DayOne
 Install Day One CLI: http://help.dayoneapp.com/day-one-2-0/command-line-interface-cli
@@ -15,11 +15,11 @@ For right now it only tracks days there were imported. It only marks a date impo
 
 Resetting the dates will allow messages to be imported on days that have already been imported. This may result in duplicates
 
-# KNOW ISSUES:
+## KNOWn ISSUES:
 Make sure Don't Sign Code is the selected setting in Build Settings > Code Signing Identity
 When code signing is enabled, it looks like some sandbox restrictions are disabling access to the iMessage DB
 
-# TODO:
+## TODO:
 import picture attatchments
 
 Import specific dates
