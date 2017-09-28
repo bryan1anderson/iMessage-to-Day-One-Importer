@@ -24,5 +24,7 @@ import picture attatchments
 
 Import specific dates
 
+Create way for importing iPhone backup messages. I currently have this working but am manually pointing to a specific folder and there is no UI for triggering this. The plan is find all the iPhone backups on your mac, then combine that with the chat.db on your mac.
+
 Add way to track indvidual messages threads that have already been imported.. Maybe. Kind of difficult since Day One 
 doesn't allow me to peek in, so I have to create identifiers for each chat on a day, maybe even individual messages and then store those identifiers. 
