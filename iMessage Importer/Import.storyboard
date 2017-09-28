@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A358a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zgg-xb-sqX">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zgg-xb-sqX">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -12,34 +12,34 @@
             <objects>
                 <viewController id="Zgg-xb-sqX" customClass="ImportViewController" customModule="iMessage_Importer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mn6-6i-oRh">
-                        <rect key="frame" x="0.0" y="0.0" width="555" height="233"/>
+                        <rect key="frame" x="0.0" y="0.0" width="555" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="96O-1w-trp">
-                                <rect key="frame" x="0.0" y="0.0" width="555" height="233"/>
+                                <rect key="frame" x="0.0" y="0.0" width="555" height="250"/>
                             </visualEffectView>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-ps-pv0">
-                                <rect key="frame" x="0.0" y="0.0" width="555" height="233"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="1000" horizontalHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-ps-pv0">
+                                <rect key="frame" x="0.0" y="0.0" width="555" height="250"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="HcT-cC-13H">
-                                        <rect key="frame" x="12" y="213" width="532" height="20"/>
+                                        <rect key="frame" x="0.0" y="230" width="555" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="b3F-ng-ypY"/>
                                         </constraints>
                                     </customView>
-                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0Q-y5-O4W">
-                                        <rect key="frame" x="0.0" y="28" width="555" height="177"/>
+                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0Q-y5-O4W">
+                                        <rect key="frame" x="108" y="28" width="339" height="194"/>
                                         <subviews>
-                                            <textField hidden="YES" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEs-9y-s63">
-                                                <rect key="frame" x="-2" y="160" width="54" height="17"/>
+                                            <textField hidden="YES" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qEs-9y-s63">
+                                                <rect key="frame" x="-2" y="177" width="54" height="17"/>
                                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="Gfe-IZ-Mas">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hpz-yc-AUO">
-                                                <rect key="frame" x="165" y="149" width="225" height="32"/>
+                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Hpz-yc-AUO">
+                                                <rect key="frame" x="57" y="166" width="225" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Import All Non Imported Dates" bezelStyle="rounded" alignment="center" state="mixed" borderStyle="border" allowsMixedState="YES" imageScaling="proportionallyDown" inset="2" id="DWI-sP-X3k">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -48,8 +48,8 @@
                                                     <action selector="importAllNotImportedDates:" target="Zgg-xb-sqX" id="rdc-lf-m6O"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" horizontalHuggingPriority="1000" verticalHuggingPriority="750" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="u1r-Ug-j7x">
-                                                <rect key="frame" x="-6" y="149" width="126" height="32"/>
+                                            <button hidden="YES" horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="u1r-Ug-j7x">
+                                                <rect key="frame" x="-6" y="166" width="126" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Cancel Import" bezelStyle="rounded" alignment="center" state="mixed" borderStyle="border" allowsMixedState="YES" imageScaling="proportionallyDown" inset="2" id="Srr-ZG-dsP">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -58,10 +58,10 @@
                                                     <action selector="cllickedCancelImport:" target="Zgg-xb-sqX" id="NEd-Gm-Blj"/>
                                                 </connections>
                                             </button>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAa-IL-IO0">
-                                                <rect key="frame" x="198" y="100" width="160" height="48"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAa-IL-IO0">
+                                                <rect key="frame" x="90" y="117" width="160" height="48"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxX-Wo-gEr">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VxX-Wo-gEr">
                                                         <rect key="frame" x="23" y="31" width="114" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Import Start Date" id="ocx-yb-Yg4">
                                                             <font key="font" metaFont="system"/>
@@ -69,7 +69,7 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rC-Gq-Eyg">
+                                                    <datePicker verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3rC-Gq-Eyg">
                                                         <rect key="frame" x="33" y="0.0" width="96" height="27"/>
                                                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="XqT-ud-Zra">
                                                             <font key="font" metaFont="system"/>
@@ -85,6 +85,7 @@
                                                     </datePicker>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="aCZ-gA-S77"/>
                                                     <constraint firstAttribute="width" constant="160" id="qXU-8v-L7D"/>
                                                 </constraints>
                                                 <visibilityPriorities>
@@ -96,31 +97,58 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="BVz-yh-0gr">
-                                                <rect key="frame" x="0.0" y="82" width="555" height="10"/>
+                                            <customView verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BVz-yh-0gr">
+                                                <rect key="frame" x="0.0" y="99" width="339" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="w8O-ua-QCS"/>
                                                 </constraints>
                                             </customView>
-                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jrt-28-w0x">
-                                                <rect key="frame" x="192" y="46" width="172" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Reset Imported Dates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i8j-ZR-NJt">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="resetImportedDates:" target="Zgg-xb-sqX" id="qx7-N3-sFB"/>
-                                                </connections>
-                                            </button>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="oac-Z7-P8K">
-                                                <rect key="frame" x="0.0" y="25" width="555" height="20"/>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S10-Q0-kes">
+                                                <rect key="frame" x="0.0" y="61" width="339" height="30"/>
+                                                <subviews>
+                                                    <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jrt-28-w0x">
+                                                        <rect key="frame" x="-6" y="2" width="172" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Reset Imported Dates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i8j-ZR-NJt">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="resetImportedDates:" target="Zgg-xb-sqX" id="qx7-N3-sFB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2XD-5T-dQ2">
+                                                        <rect key="frame" x="162" y="2" width="183" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Quit after finishing date" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wyl-IM-Ll4">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="clickedQuitAfterFinishingDate:" target="Zgg-xb-sqX" id="hfE-vS-imD"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <customView verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oac-Z7-P8K">
+                                                <rect key="frame" x="0.0" y="33" width="339" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="b0f-Vg-q8e"/>
                                                 </constraints>
                                             </customView>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCa-wO-V2f">
-                                                <rect key="frame" x="-2" y="0.0" width="559" height="17"/>
-                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" id="Ab9-YJ-ULb">
+                                            <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="xCa-wO-V2f">
+                                                <rect key="frame" x="-2" y="0.0" width="343" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="lCa-jr-9SL"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="555" id="sPY-py-tfU"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="  " id="Ab9-YJ-ULb">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -149,12 +177,15 @@
                                         </customSpacing>
                                     </stackView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="jsm-KR-wad">
-                                        <rect key="frame" x="12" y="0.0" width="532" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="555" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="t9z-SS-eoC"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="kBo-wy-oI2"/>
+                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>

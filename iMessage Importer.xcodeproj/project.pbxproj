@@ -22,6 +22,8 @@
 		938A322A1F3A167300F1B28C /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A32291F3A167300F1B28C /* Global.swift */; };
 		938A322C1F3A4AC800F1B28C /* ContactsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */; };
 		938A322E1F3A695200F1B28C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A322D1F3A695200F1B28C /* Chat.swift */; };
+		93E35AB01F718EF3002A435A /* ChatMessageJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E35AAF1F718EF3002A435A /* ChatMessageJoin.swift */; };
+		93E35AB21F719012002A435A /* GroupMessasgeMemberJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E35AB11F719012002A435A /* GroupMessasgeMemberJoin.swift */; };
 		CFF871AE4830CA8ADC5C5C08 /* Pods_iMessage_Importer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA05F743B2513E39F702749 /* Pods_iMessage_Importer.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		938A32291F3A167300F1B28C /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		938A322B1F3A4AC800F1B28C /* ContactsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsProtocol.swift; sourceTree = "<group>"; };
 		938A322D1F3A695200F1B28C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		93E35AAF1F718EF3002A435A /* ChatMessageJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageJoin.swift; sourceTree = "<group>"; };
+		93E35AB11F719012002A435A /* GroupMessasgeMemberJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMessasgeMemberJoin.swift; sourceTree = "<group>"; };
 		BD78AA0DC8CBC434581702A6 /* Pods-iMessage Importer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMessage Importer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer.debug.xcconfig"; sourceTree = "<group>"; };
 		BEE901889E8FEF7011A81BEE /* Pods-iMessage Importer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMessage Importer.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMessage Importer/Pods-iMessage Importer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +147,7 @@
 		938A32241F3A129100F1B28C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				93E35AAE1F718EE4002A435A /* Joins */,
 				931E72E71F52721F00BE4535 /* OldMessage.swift */,
 				931E72E91F52722A00BE4535 /* OldContact.swift */,
 				938A32251F3A129F00F1B28C /* Group.swift */,
@@ -150,6 +155,15 @@
 				938A322D1F3A695200F1B28C /* Chat.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		93E35AAE1F718EE4002A435A /* Joins */ = {
+			isa = PBXGroup;
+			children = (
+				93E35AAF1F718EF3002A435A /* ChatMessageJoin.swift */,
+				93E35AB11F719012002A435A /* GroupMessasgeMemberJoin.swift */,
+			);
+			name = Joins;
 			sourceTree = "<group>";
 		};
 		FF525CC5F7F56232B0758C64 /* Frameworks */ = {
@@ -195,7 +209,7 @@
 				TargetAttributes = {
 					9336C0EF1F3904EC0045B1C4 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -294,7 +308,9 @@
 				938A322C1F3A4AC800F1B28C /* ContactsProtocol.swift in Sources */,
 				938733241F59BD1500844E16 /* ImportViewController.swift in Sources */,
 				9336C1021F39089C0045B1C4 /* MessageImporter.swift in Sources */,
+				93E35AB21F719012002A435A /* GroupMessasgeMemberJoin.swift in Sources */,
 				9336C0F41F3904EC0045B1C4 /* AppDelegate.swift in Sources */,
+				93E35AB01F718EF3002A435A /* ChatMessageJoin.swift in Sources */,
 				938A322A1F3A167300F1B28C /* Global.swift in Sources */,
 				931E72EA1F52722A00BE4535 /* OldContact.swift in Sources */,
 				938A32281F3A12B000F1B28C /* Message.swift in Sources */,

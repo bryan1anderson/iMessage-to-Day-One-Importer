@@ -10,7 +10,7 @@ import Foundation
 import SQLite
 import Contacts
 
-struct Chat {
+struct Chat: Equatable {
     
     let displayName: String?
     let id: Int
@@ -23,9 +23,15 @@ struct Chat {
         self.displayName = row[displayNameColumn]
         
     }
+    
+    static func ==(lhs: Chat, rhs: Chat) -> Bool {
+        return lhs.displayName == rhs.displayName ||
+        lhs.id == rhs.id
+        
+    }
 }
 
-struct Handle: Equatable {
+struct Handle: Equatable, Comparable {
     let id: Int
     let value: String?
     
@@ -40,7 +46,15 @@ struct Handle: Equatable {
     }
     
     static func ==(lhs: Handle, rhs: Handle) -> Bool {
-        return rhs.id == lhs.id
+        guard let lhsValue = lhs.value,
+            let rhsValue = rhs.value else { return false }
+        return lhsValue == rhsValue
+    }
+    
+    static func <(lhs: Handle, rhs: Handle) -> Bool {
+        guard let lhsValue = lhs.value,
+            let rhsValue = rhs.value else { return false }
+        return lhsValue < rhsValue
     }
 }
 

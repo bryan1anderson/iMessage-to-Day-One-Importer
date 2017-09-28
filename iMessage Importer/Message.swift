@@ -23,7 +23,7 @@ extension String {
     }
 }
 
-struct Message {
+struct Message: Equatable, Comparable {
     
     let id: Int
     let isFromMe: Bool
@@ -44,12 +44,23 @@ struct Message {
         self.handleID = row[handleIDColumn]
         self.text = row[textColumn]
     
-        let interval = Double(row[dateColumn]) / 1000000000
+        var interval = Double(row[dateColumn]) / 1000000000
+        if interval < 1000 {
+            interval = Double(row[dateColumn])
+        }
         let messageDate = Date(timeIntervalSinceReferenceDate: interval)
         self.date = messageDate
 
     }
     
+    static func ==(lhs: Message, rhs: Message) -> Bool {
+        return lhs.text == rhs.text &&
+            lhs.date == rhs.date
+    }
+
+    static func <(lhs: Message, rhs: Message) -> Bool {
+        return lhs.date < rhs.date
+    }
     
     func dateString() -> String {
         

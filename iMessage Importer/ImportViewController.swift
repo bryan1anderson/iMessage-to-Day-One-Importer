@@ -21,6 +21,8 @@ class ImportViewController: NSViewController {
     
     @IBOutlet weak var dateDefaultStartPicker: NSDatePicker!
     
+    var shouldStopBeforeNextDate = false
+    
 //    @IBOutlet weak var dateOldStartPicker: NSDatePicker!
 //    @IBOutlet weak var dateOldEndPicker: NSDatePicker!
 //
@@ -44,6 +46,8 @@ class ImportViewController: NSViewController {
         setImportType()
         
         buttonImportAll.alternateTitle = "Cancel"
+        
+//        importOld()
         // Do view setup here.
     }
     var importType: ImportType = .user {
@@ -114,6 +118,19 @@ class ImportViewController: NSViewController {
         NSApplication.shared().terminate(self)
     }
     
+    @IBAction func clickedQuitAfterFinishingDate(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.informativeText = "All entries for the current date being imported will finish importing, before the next date begins the app will quit. This helps avoid duplicates on days"
+        alert.messageText = "Quit app after current date finishes importing?"
+        alert.addButton(withTitle: "Quit")
+        alert.addButton(withTitle: "Cancel")
+        alert.alertStyle = .warning
+        
+        let willQuit = alert.runModal() == NSAlertFirstButtonReturn
+        if willQuit {
+            self.shouldStopBeforeNextDate = true
+        }
+    }
     
     @IBAction func resetImportedDates(_ sender: NSButton) {
         let alert = NSAlert()
@@ -134,6 +151,26 @@ class ImportViewController: NSViewController {
 
 
 extension ImportViewController {
+    
+    func importOld() {
+        var startC = DateComponents()
+        startC.year = 2014
+        startC.month = 10
+        startC.day = 21
+        
+        var endC = DateComponents()
+        endC.year = 2014
+        endC.month = 10
+        endC.day = 23
+        
+        guard let start = Calendar.current.date(from: startC),
+            let end = Calendar.current.date(from: endC) else { return }
+        
+        importQueue.async {
+            self.importNonImportedOldMessages(startDate: start, endDate: end)
+        }
+    }
+    
     @objc func importMessagesForAllNonImportedDates() {
 //        self.importDatesMenuItem?.isEnabled = false
         self.buttonImportAll.isEnabled = false
@@ -161,6 +198,10 @@ extension ImportViewController {
 //                let stringDate = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
                 self.labelStatus.stringValue = ""
                 self.labelStatusMessageTitle.stringValue = ""
+                if self.shouldStopBeforeNextDate {
+                    NSApplication.shared().terminate(self)
+                    return
+                }
                 importMessages(date: date)
                 importedDates.append(date)
                 self.importedDates = importedDates
@@ -231,7 +272,7 @@ extension ImportViewController {
     func importOldMessages(date: Date) {
         let importer = SMSImporter(date: date)
         importer.delegate = self
-        importer.importOldDbs()
+        importer.importDbs()
     }
 
 }
