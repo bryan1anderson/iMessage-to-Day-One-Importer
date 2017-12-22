@@ -123,7 +123,7 @@ extension GroupMessageMemberJoin: ContactsProtocol {
         }
         let escapedString = text.replacingOccurrences(of: "\n", with: "\n").replacingOccurrences(of: "“", with: "").replacingOccurrences(of: "”", with: "").replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "")
         
-        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: escapedString)
+        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: escapedString, hasAttachments: false, attachments: nil)
         completion(entry)
         //        }
         

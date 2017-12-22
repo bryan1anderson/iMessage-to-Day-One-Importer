@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/AppDelegate.swift"
-            timestampString = "525974694.684425"
+            timestampString = "535590838.258466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "330"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/MessageImporter.swift"
-            timestampString = "527552888.715738"
+            timestampString = "535656353.11792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "getMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/ImportViewController.swift"
-            timestampString = "527708619.2792"
+            timestampString = "535656353.118038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "importNonImportedOldMessages(startDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>

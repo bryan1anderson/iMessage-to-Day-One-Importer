@@ -208,7 +208,10 @@ extension ImportViewController {
                 
             } else {
                 print("already imported date: \(date)")
-                self.labelStatus.stringValue = "already imported date: \(date)"
+                let formater = DateFormatter()
+                formater.dateStyle = .medium
+                let dateString = formater.string(from: date)
+                self.labelStatus.stringValue = "already imported date: \(dateString)"
             }
         }
 //        self.importDatesMenuItem?.isEnabled = false
@@ -426,7 +429,24 @@ extension ImportViewController: MessageImporterDelegate {
         
         let body = "\(entry.title) \(entry.body)"
         self.labelStatusMessageTitle.stringValue = "Importing: \(stringDate) \(entry.title)"
-        let command = "/usr/local/bin/dayone2 -j 'iMessages' --tags='\(tags)' --date='\(month)/\(day)/\(year)' new \'\(body)\'"
+        let photosTags: String
+        
+        let photoAttachments = entry.attachments?.filter({ (attachment) -> Bool in
+            let type = attachment.mimeType.type
+            switch type {
+            case .image: return true
+            default: return false
+            }
+        })
+        
+        if let attachments = photoAttachments, photoAttachments?.count ?? 0 > 0 {
+            let names = attachments.flatMap({$0.filename})
+            let photos = names.joined(separator: " ")
+            photosTags = " -p \(photos)"
+        } else {
+            photosTags = ""
+        }
+        let command = "/usr/local/bin/dayone2 -j 'iMessages'\(photosTags) --tags='\(tags)' --date='\(month)/\(day)/\(year)' new \'\(body)\'"
         print(command)
         return command
     }

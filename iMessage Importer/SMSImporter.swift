@@ -166,7 +166,7 @@ class SMSImporter {
     init(date: Date) {
         self.date = date
         do {
-            let originFolder = try Folder(path: "~/Developer/Personal/iMessages/iMessages")
+            let originFolder = try Folder.home.subfolder(atPath: "/Library/Messages")
             let files = originFolder.files.filter({$0.extension == "db" })
             self.oldDBs = files.flatMap({ OldDatabase(file: $0) })
             self.newDBs = files.flatMap({ NewDatabase(file: $0) })

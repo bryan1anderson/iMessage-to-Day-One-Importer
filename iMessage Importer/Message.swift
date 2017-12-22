@@ -23,13 +23,14 @@ extension String {
     }
 }
 
-struct Message: Equatable, Comparable {
+class Message: Equatable, Comparable {
     
     let id: Int
     let isFromMe: Bool
     let handleID: Int
     let text: String?
     let date: Date
+    var attachments: [Attachment]?
     
     init(row: Row) {
         let rowidColumn = Expression<Int>("ROWID")
