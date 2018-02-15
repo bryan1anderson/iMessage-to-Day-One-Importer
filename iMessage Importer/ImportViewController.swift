@@ -454,7 +454,7 @@ extension ImportViewController: MessageImporterDelegate {
         if let attachments = photoAttachments, photoAttachments?.count ?? 0 > 0 {
 //            let names = attachments.flatMap({"'\($0.filename)'"})
             let names = attachments.flatMap({ (attachment) -> String? in
-                let filename = attachment.filename.replacingOccurrences(of: " ", with: "/\ ")
+                let filename = attachment.filename.replacingOccurrences(of: " ", with: "\\ ")
                 return filename
             })
             let photos = names.joined(separator: " ")
