@@ -42,11 +42,14 @@ class ImportViewController: NSViewController {
         super.viewDidLoad()
         
         setDatePickersInitialValue()
-        labelStatus.stringValue = ""
+        DispatchQueue.main.async {
+            self.labelStatus.stringValue = ""
+        }
         setImportType()
         
-        buttonImportAll.alternateTitle = "Cancel"
-        
+        DispatchQueue.main.async {
+            self.buttonImportAll.alternateTitle = "Cancel"
+        }
 //        importOld()
         // Do view setup here.
     }
@@ -196,13 +199,16 @@ extension ImportViewController {
             if !contains {
                 print("importing: \(date)")
 //                let stringDate = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+                DispatchQueue.main.async {
                 self.labelStatus.stringValue = ""
                 self.labelStatusMessageTitle.stringValue = ""
+                }
                 if self.shouldStopBeforeNextDate {
                     NSApplication.shared().terminate(self)
                     return
                 }
-                importMessages(date: date)
+//                self.importMessages(date: date)
+                self.importOldMessages(date: date)
                 importedDates.append(date)
                 self.importedDates = importedDates
                 
@@ -211,7 +217,9 @@ extension ImportViewController {
                 let formater = DateFormatter()
                 formater.dateStyle = .medium
                 let dateString = formater.string(from: date)
-                self.labelStatus.stringValue = "already imported date: \(dateString)"
+                DispatchQueue.main.async {
+                    self.labelStatus.stringValue = "already imported date: \(dateString)"
+                }
             }
         }
 //        self.importDatesMenuItem?.isEnabled = false
@@ -256,8 +264,9 @@ extension ImportViewController {
             
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             print("importing: \(date)")
-            self.labelStatus.stringValue = "importing: \(date)"
-            
+            DispatchQueue.main.async {
+                self.labelStatus.stringValue = "importing: \(date)"
+            }
             self.importOldMessages(date: date)
             
             //            let contains = importedDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: date) })
@@ -394,10 +403,11 @@ extension ImportViewController: MessageImporterDelegate {
         for chatMessageJoin in chatMessageJoins {
             chatMessageJoin.getReadableString(completion: { (entry) in
                 guard let command = self.createEntryCommand(for: entry) else { return }
+//                print(command)
                 let returned = run(command: command)
                 print(returned)
-//                DispatchQueue.main.sync {
- //                }
+                DispatchQueue.main.sync {
+                 }
             })
             
         }
@@ -407,7 +417,7 @@ extension ImportViewController: MessageImporterDelegate {
         for chatMessageJoin in oldGroupJoins {
             chatMessageJoin.getReadableString(completion: { (entry) in
                 guard let command = self.createEntryCommand(for: entry) else { return }
-                //                print(command)
+//                                print(command)
                 let returned = run(command: command)
                 print(returned)
                 DispatchQueue.main.sync {
@@ -428,7 +438,9 @@ extension ImportViewController: MessageImporterDelegate {
         let stringDate = DateFormatter.localizedString(from: entry.date, dateStyle: .medium, timeStyle: .none)
         
         let body = "\(entry.title) \(entry.body)"
-        self.labelStatusMessageTitle.stringValue = "Importing: \(stringDate) \(entry.title)"
+        DispatchQueue.main.async {
+            self.labelStatusMessageTitle.stringValue = "Importing: \(stringDate) \(entry.title)"
+        }
         let photosTags: String
         
         let photoAttachments = entry.attachments?.filter({ (attachment) -> Bool in
@@ -440,7 +452,11 @@ extension ImportViewController: MessageImporterDelegate {
         })
         
         if let attachments = photoAttachments, photoAttachments?.count ?? 0 > 0 {
-            let names = attachments.flatMap({$0.filename})
+//            let names = attachments.flatMap({"'\($0.filename)'"})
+            let names = attachments.flatMap({ (attachment) -> String? in
+                let filename = attachment.filename.replacingOccurrences(of: " ", with: "/\ ")
+                return filename
+            })
             let photos = names.joined(separator: " ")
             photosTags = " -p \(photos)"
         } else {
