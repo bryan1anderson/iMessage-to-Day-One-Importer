@@ -19,14 +19,16 @@ class MessageImporter {
     
     let chatDB: File
     
-    var delegate: MessageImporterDelegate!
+//    var delegate: MessageImporterDelegate!
     let date: Date
-    var chatMessageJoins = [ChatMessageJoin]() {
-        didSet { delegate.didGet(chatMessageJoins: chatMessageJoins) }
-    }
+//    var chatMessageJoins = [ChatMessageJoin]() {
+//        didSet { delegate.didGet(chatMessageJoins: chatMessageJoins) }
+//    }
     
     init(date: Date) {
         do  {
+            let url = FileManager.default.urls(for: FileManager.SearchPathDirectory.libraryDirectory, in: .userDomainMask)
+            print(url)
             let originFolder = try Folder.home.subfolder(atPath: "/Library/Messages")
             guard let chatDB = try? originFolder.file(named: "chat.db") else { fatalError("unable to find chat.db") }
             self.chatDB = chatDB
@@ -37,11 +39,13 @@ class MessageImporter {
         }
     }
     
-    func getMessages() {
+    func getMessages(completion: (_ chatMessageJoins: [ChatMessageJoin]?) -> ()) {
         //Get all messages based off of groupID's. Just fetch groupID's, remove duplicates
         
         do {
             let path = chatDB.path
+            
+            print(path)
             let dbs = try Connection(path)
             
             let groupID = Expression<Int?>("group_id")
@@ -91,10 +95,10 @@ class MessageImporter {
 //            //                    let messagesQuery = messageTable
             //Get all messages in todays date
             //This is avoids going through days that don't have messages
-            guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return }
+            guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return completion(nil) }
             if messages.count <= 0 {
                 print("no messages")
-                return }
+                return completion(nil) }
             do {
                 let chatsQuery = chatTable
                 //For each chat
@@ -168,25 +172,29 @@ class MessageImporter {
                     return chatMessageJoin
                 })
                 //Once the flatmap is complete, chatMessageJoins contains all the chats/messages/handles to create an entry on a certain date
-                self.chatMessageJoins = chatMessageJoins
-                
+//                self.chatMessageJoins = chatMessageJoins
+                completion(chatMessageJoins)
            
            
             } catch {
                 print(error)
+                completion(nil)
             }
             
         } catch {
-            print(error)
-            let alert = NSAlert()
-            alert.informativeText = error.localizedDescription
-            alert.messageText = "FATAL ERROR"
-            alert.addButton(withTitle: "OKAY")
-            alert.alertStyle = .critical
-            
-            let willReset = alert.runModal() == NSAlertFirstButtonReturn
-            if willReset {
-                fatalError(error.localizedDescription)
+            completion(nil)
+            DispatchQueue.main.async {
+                print(error)
+                let alert = NSAlert()
+                alert.informativeText = "\(error)"
+                alert.messageText = "FATAL ERROR"
+                alert.addButton(withTitle: "OKAY")
+                alert.alertStyle = .critical
+                
+                let willReset = alert.runModal() == NSAlertFirstButtonReturn
+                if willReset {
+                    fatalError(error.localizedDescription)
+                }
             }
 
         }

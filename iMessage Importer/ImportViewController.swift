@@ -176,7 +176,9 @@ extension ImportViewController {
     
     @objc func importMessagesForAllNonImportedDates() {
 //        self.importDatesMenuItem?.isEnabled = false
-        self.buttonImportAll.isEnabled = false
+        DispatchQueue.main.async {
+            self.buttonImportAll.isEnabled = false
+        }
         var startC = DateComponents()
         startC.year = 2017
         startC.month = 8
@@ -207,8 +209,8 @@ extension ImportViewController {
                     NSApplication.shared().terminate(self)
                     return
                 }
-//                self.importMessages(date: date)
-                self.importOldMessages(date: date)
+                self.importMessages(date: date)
+//                self.importOldMessages(date: date)
                 importedDates.append(date)
                 self.importedDates = importedDates
                 
@@ -232,9 +234,19 @@ extension ImportViewController {
     }
     
     func importMessages(date: Date) {
+        let group = DispatchGroup()
         let importer = MessageImporter(date: date)
-        importer.delegate = self
-        importer.getMessages()
+        
+        group.enter()
+//        DispatchQueue.global(qos: .userInitiated).async {
+        importer.getMessages { (joins) in
+            guard let joins = joins else { group.leave(); return }
+            self.importChats(chatMessageJoins: joins, completion: {
+                group.leave()
+            })
+        }
+//        }
+        group.wait()
     }
     
     @objc func importNonImportedOldMessages(startDate: Date, endDate: Date) {
@@ -399,18 +411,28 @@ extension ImportViewController {
 
 extension ImportViewController: MessageImporterDelegate {
     
-    func didGet(chatMessageJoins: [ChatMessageJoin]) {
+    func importChats(chatMessageJoins: [ChatMessageJoin], completion: () -> ()) {
+        
+        let group = DispatchGroup()
+        
         for chatMessageJoin in chatMessageJoins {
-            chatMessageJoin.getReadableString(completion: { (entry) in
-                guard let command = self.createEntryCommand(for: entry) else { return }
-//                print(command)
-                let returned = run(command: command)
-                print(returned)
-                DispatchQueue.main.sync {
-                 }
-            })
-            
+            group.enter()
+            DispatchQueue.global(qos: .utility).async {
+                chatMessageJoin.getReadableString(completion: { (entry) in
+                    guard let command = self.createEntryCommand(for: entry) else { group.leave(); return }
+                    //                print(command)
+                    let returned = run(command: command)
+                    print(returned)
+                    group.leave()
+                })
+
+            }
         }
+        group.wait()
+        completion()
+    }
+    
+    func didGet(chatMessageJoins: [ChatMessageJoin]) {
     }
     
     func didGet(oldGroupJoins: [GroupMessageMemberJoin]) {

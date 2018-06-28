@@ -26,13 +26,15 @@ struct Attachment {
         let rowidColumn = Expression<Int>("ROWID")
         
         let guidColumn = Expression<String>("guid")
-        let filenameColumn = Expression<String>("filename")
+        let filenameColumn = Expression<String?>("filename")
         let mimeTypeColumn = Expression<String?>("mime_type")
         let dateColumn = Expression<Int>("created_date")
         
         self.id = row[rowidColumn]
         self.guid = row[guidColumn]
-        self.filename = row[filenameColumn]
+        
+        guard let filename = row[filenameColumn] else { return nil }
+        self.filename = filename
         
         guard let mimeTypeRaw = row[mimeTypeColumn] else { return nil }
         self.mimeTypeRaw = mimeTypeRaw
