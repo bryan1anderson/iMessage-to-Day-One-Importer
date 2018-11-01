@@ -98,6 +98,12 @@ struct ChatMessageJoin: ContactsProtocol, Equatable {
             let messageText = message.text ?? ""
             let line = "\n \(name)   \n \(messageText) \n ###### \(message.dateString()) \n "
             text.append(line)
+            if let attachments = message.attachments {
+                for attachment in attachments {
+                    guard attachment.mimeType.type.description == MimeType.TopType.image.description else { continue }
+                    text.append("\n[{photo}]\n")
+                }
+            }
         }
         
         //        group.notify(queue: .main) {
@@ -115,7 +121,10 @@ struct ChatMessageJoin: ContactsProtocol, Equatable {
 //        }
         let escapedString = text.replacingOccurrences(of: "\n", with: "\n").replacingOccurrences(of: "“", with: "").replacingOccurrences(of: "”", with: "").replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "")
         
-        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: escapedString)
+        let attachments = messages.flatMap({ $0.attachments ?? [] })
+        let hasAttachments = attachments.count > 0
+        
+        let entry = Entry(date: date.yesterday, tags: tags, title: title, body: escapedString, hasAttachments: hasAttachments, attachments: attachments)
         completion(entry)
         //        }
         

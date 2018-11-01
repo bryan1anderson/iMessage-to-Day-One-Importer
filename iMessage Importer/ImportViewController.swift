@@ -42,11 +42,14 @@ class ImportViewController: NSViewController {
         super.viewDidLoad()
         
         setDatePickersInitialValue()
-        labelStatus.stringValue = ""
+        DispatchQueue.main.async {
+            self.labelStatus.stringValue = ""
+        }
         setImportType()
         
-        buttonImportAll.alternateTitle = "Cancel"
-        
+        DispatchQueue.main.async {
+            self.buttonImportAll.alternateTitle = "Cancel"
+        }
 //        importOld()
         // Do view setup here.
     }
@@ -173,7 +176,9 @@ extension ImportViewController {
     
     @objc func importMessagesForAllNonImportedDates() {
 //        self.importDatesMenuItem?.isEnabled = false
-        self.buttonImportAll.isEnabled = false
+        DispatchQueue.main.async {
+            self.buttonImportAll.isEnabled = false
+        }
         var startC = DateComponents()
         startC.year = 2017
         startC.month = 8
@@ -196,19 +201,27 @@ extension ImportViewController {
             if !contains {
                 print("importing: \(date)")
 //                let stringDate = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+                DispatchQueue.main.async {
                 self.labelStatus.stringValue = ""
                 self.labelStatusMessageTitle.stringValue = ""
+                }
                 if self.shouldStopBeforeNextDate {
                     NSApplication.shared().terminate(self)
                     return
                 }
-                importMessages(date: date)
+                self.importMessages(date: date)
+//                self.importOldMessages(date: date)
                 importedDates.append(date)
                 self.importedDates = importedDates
                 
             } else {
                 print("already imported date: \(date)")
-                self.labelStatus.stringValue = "already imported date: \(date)"
+                let formater = DateFormatter()
+                formater.dateStyle = .medium
+                let dateString = formater.string(from: date)
+                DispatchQueue.main.async {
+                    self.labelStatus.stringValue = "already imported date: \(dateString)"
+                }
             }
         }
 //        self.importDatesMenuItem?.isEnabled = false
@@ -221,9 +234,19 @@ extension ImportViewController {
     }
     
     func importMessages(date: Date) {
+        let group = DispatchGroup()
         let importer = MessageImporter(date: date)
-        importer.delegate = self
-        importer.getMessages()
+        
+        group.enter()
+//        DispatchQueue.global(qos: .userInitiated).async {
+        importer.getMessages { (joins) in
+            guard let joins = joins else { group.leave(); return }
+            self.importChats(chatMessageJoins: joins, completion: {
+                group.leave()
+            })
+        }
+//        }
+        group.wait()
     }
     
     @objc func importNonImportedOldMessages(startDate: Date, endDate: Date) {
@@ -253,8 +276,9 @@ extension ImportViewController {
             
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             print("importing: \(date)")
-            self.labelStatus.stringValue = "importing: \(date)"
-            
+            DispatchQueue.main.async {
+                self.labelStatus.stringValue = "importing: \(date)"
+            }
             self.importOldMessages(date: date)
             
             //            let contains = importedDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: date) })
@@ -387,24 +411,35 @@ extension ImportViewController {
 
 extension ImportViewController: MessageImporterDelegate {
     
-    func didGet(chatMessageJoins: [ChatMessageJoin]) {
+    func importChats(chatMessageJoins: [ChatMessageJoin], completion: () -> ()) {
+        
+        let group = DispatchGroup()
+        
         for chatMessageJoin in chatMessageJoins {
-            chatMessageJoin.getReadableString(completion: { (entry) in
-                guard let command = self.createEntryCommand(for: entry) else { return }
-                let returned = run(command: command)
-                print(returned)
-//                DispatchQueue.main.sync {
- //                }
-            })
-            
+            group.enter()
+            DispatchQueue.global(qos: .utility).async {
+                chatMessageJoin.getReadableString(completion: { (entry) in
+                    guard let command = self.createEntryCommand(for: entry) else { group.leave(); return }
+                    //                print(command)
+                    let returned = run(command: command)
+                    print(returned)
+                    group.leave()
+                })
+
+            }
         }
+        group.wait()
+        completion()
+    }
+    
+    func didGet(chatMessageJoins: [ChatMessageJoin]) {
     }
     
     func didGet(oldGroupJoins: [GroupMessageMemberJoin]) {
         for chatMessageJoin in oldGroupJoins {
             chatMessageJoin.getReadableString(completion: { (entry) in
                 guard let command = self.createEntryCommand(for: entry) else { return }
-                //                print(command)
+//                                print(command)
                 let returned = run(command: command)
                 print(returned)
                 DispatchQueue.main.sync {
@@ -425,8 +460,31 @@ extension ImportViewController: MessageImporterDelegate {
         let stringDate = DateFormatter.localizedString(from: entry.date, dateStyle: .medium, timeStyle: .none)
         
         let body = "\(entry.title) \(entry.body)"
-        self.labelStatusMessageTitle.stringValue = "Importing: \(stringDate) \(entry.title)"
-        let command = "/usr/local/bin/dayone2 -j 'iMessages' --tags='\(tags)' --date='\(month)/\(day)/\(year)' new \'\(body)\'"
+        DispatchQueue.main.async {
+            self.labelStatusMessageTitle.stringValue = "Importing: \(stringDate) \(entry.title)"
+        }
+        let photosTags: String
+        
+        let photoAttachments = entry.attachments?.filter({ (attachment) -> Bool in
+            let type = attachment.mimeType.type
+            switch type {
+            case .image: return true
+            default: return false
+            }
+        })
+        
+        if let attachments = photoAttachments, photoAttachments?.count ?? 0 > 0 {
+//            let names = attachments.flatMap({"'\($0.filename)'"})
+            let names = attachments.flatMap({ (attachment) -> String? in
+                let filename = attachment.filename.replacingOccurrences(of: " ", with: "\\ ")
+                return filename
+            })
+            let photos = names.joined(separator: " ")
+            photosTags = " -p \(photos)"
+        } else {
+            photosTags = ""
+        }
+        let command = "/usr/local/bin/dayone2 -j 'iMessages'\(photosTags) --tags='\(tags)' --date='\(month)/\(day)/\(year)' new \'\(body)\'"
         print(command)
         return command
     }

@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        importer.delegate = self
+//        importer.delegate = self
         
         let center = NSUserNotificationCenter.default
         center.delegate = self
@@ -191,7 +191,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @objc func manuallyImport() {
         print("beginning import")
         let currentDate = Date().yesterday
-        importer.getMessages()
+//        importer.getMessages()
         var importedDates = self.importedDates
         importedDates.append(currentDate)
         self.importedDates = importedDates
@@ -236,8 +236,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func importMessages(date: Date) {
         let importer = MessageImporter(date: date)
-        importer.delegate = self
-        importer.getMessages()
+//        importer.delegate = self
+//        importer.getMessages()
     }
     
     @objc func importNonImportedOldMessages() {

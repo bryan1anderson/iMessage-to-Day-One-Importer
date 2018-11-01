@@ -19,14 +19,16 @@ class MessageImporter {
     
     let chatDB: File
     
-    var delegate: MessageImporterDelegate!
+//    var delegate: MessageImporterDelegate!
     let date: Date
-    var chatMessageJoins = [ChatMessageJoin]() {
-        didSet { delegate.didGet(chatMessageJoins: chatMessageJoins) }
-    }
+//    var chatMessageJoins = [ChatMessageJoin]() {
+//        didSet { delegate.didGet(chatMessageJoins: chatMessageJoins) }
+//    }
     
     init(date: Date) {
         do  {
+            let url = FileManager.default.urls(for: FileManager.SearchPathDirectory.libraryDirectory, in: .userDomainMask)
+            print(url)
             let originFolder = try Folder.home.subfolder(atPath: "/Library/Messages")
             guard let chatDB = try? originFolder.file(named: "chat.db") else { fatalError("unable to find chat.db") }
             self.chatDB = chatDB
@@ -37,11 +39,13 @@ class MessageImporter {
         }
     }
     
-    func getMessages() {
+    func getMessages(completion: (_ chatMessageJoins: [ChatMessageJoin]?) -> ()) {
         //Get all messages based off of groupID's. Just fetch groupID's, remove duplicates
         
         do {
             let path = chatDB.path
+            
+            print(path)
             let dbs = try Connection(path)
             
             let groupID = Expression<Int?>("group_id")
@@ -70,6 +74,9 @@ class MessageImporter {
             //CHAT HANDLE JOIN
             let chatHandleJoinTable = Table("chat_handle_join")
             let handlesTable = Table("handle")
+            
+            let messageAttachmentJoinTable = Table("message_attachment_join")
+            let attachmentTable = Table("attachment")
 
             //Get a list of chats
             //select all messages from chats using the JOIN
@@ -88,10 +95,10 @@ class MessageImporter {
 //            //                    let messagesQuery = messageTable
             //Get all messages in todays date
             //This is avoids going through days that don't have messages
-            guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return }
+            guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return completion(nil) }
             if messages.count <= 0 {
                 print("no messages")
-                return }
+                return completion(nil) }
             do {
                 let chatsQuery = chatTable
                 //For each chat
@@ -118,6 +125,21 @@ class MessageImporter {
                     //Filter by itemType == 0. I don't know what other item_types do, but they seem to not be readable/viewable
                     let messagesQuery = messageTable.filter(messageIDs.contains(rowID)).order(date).filter(itemType == 0).filter(dateColumn >= yesterdayMidnight && dateColumn < midnight)
                     
+                    //each message is potentially going to have a few attachments
+                    //there is a join for this
+                    //so find all attachmentID's associated to a particular message
+                    
+                    
+                    func getAttachmentIDsForMessage(id: Int) -> [Int] {
+                        let attachmentsMessageJoinQuery = messageAttachmentJoinTable.filter(messageID == id)
+                        let attachmentIDColumn = Expression<Int>("attachment_id")
+
+                        let attachmentJoins = try? dbs.prepare(attachmentsMessageJoinQuery).flatMap({ $0[attachmentIDColumn] })
+                        return attachmentJoins ?? []
+                    }
+                    
+                    
+//                    let attachments = attachmentTable.filter(attachmentJoins)
                     //Get the messages
                     guard let messages = try? dbs.prepare(messagesQuery).flatMap({ $0 }) else { return nil }
 //                    let dates = messages.flatMap({ $0[date] })
@@ -136,36 +158,49 @@ class MessageImporter {
                     }
                     let handlesArray = handles?.flatMap({ Handle(row: $0) })
                     
+                    messagesArray.forEach({ (message) in
+                        let id = message.id
+                        let attachmentIDs = getAttachmentIDsForMessage(id: id)
+                        if attachmentIDs.count == 0 { return }
+                        let attachmentsQuery = attachmentTable.filter(attachmentIDs.contains(rowID))
+                        guard let attachments = try? dbs.prepare(attachmentsQuery).flatMap({ Attachment(row: $0) }) else { return }
+                        message.attachments = attachments
+                    })
+                    
                     //This object is a join for a chat, it's messages, it's handles, and the date.
                     let chatMessageJoin = ChatMessageJoin(chat: chat, messages: messagesArray, handles: handlesArray, date: date)
                     return chatMessageJoin
                 })
                 //Once the flatmap is complete, chatMessageJoins contains all the chats/messages/handles to create an entry on a certain date
-                self.chatMessageJoins = chatMessageJoins
-                
+//                self.chatMessageJoins = chatMessageJoins
+                completion(chatMessageJoins)
            
            
             } catch {
                 print(error)
+                completion(nil)
             }
             
         } catch {
-            print(error)
-            let alert = NSAlert()
-            alert.informativeText = error.localizedDescription
-            alert.messageText = "FATAL ERROR"
-            alert.addButton(withTitle: "OKAY")
-            alert.alertStyle = .critical
-            
-            let willReset = alert.runModal() == NSAlertFirstButtonReturn
-            if willReset {
-                fatalError(error.localizedDescription)
+            completion(nil)
+            DispatchQueue.main.async {
+                print(error)
+                let alert = NSAlert()
+                alert.informativeText = "\(error)"
+                alert.messageText = "FATAL ERROR"
+                alert.addButton(withTitle: "OKAY")
+                alert.alertStyle = .critical
+                
+                let willReset = alert.runModal() == NSAlertFirstButtonReturn
+                if willReset {
+                    fatalError(error.localizedDescription)
+                }
             }
 
         }
     }
     
-    
+  
     
 }
 
@@ -174,6 +209,8 @@ struct Entry {
     let tags: [String]
     let title: String
     let body: String
+    let hasAttachments: Bool
+    let attachments: [Attachment]?
 }
 
 

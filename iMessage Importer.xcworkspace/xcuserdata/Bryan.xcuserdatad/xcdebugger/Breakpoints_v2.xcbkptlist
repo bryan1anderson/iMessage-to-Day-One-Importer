@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/AppDelegate.swift"
-            timestampString = "525974694.684425"
+            timestampString = "551744338.395496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "330"
@@ -22,32 +22,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iMessage Importer/MessageImporter.swift"
-            timestampString = "527552888.715738"
+            filePath = "iMessage Importer/ImportViewController.swift"
+            timestampString = "551744338.395942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "getMessages()"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "importNonImportedOldMessages(startDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMessage Importer/ImportViewController.swift"
-            timestampString = "527708619.2792"
+            timestampString = "551744338.396014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "importNonImportedOldMessages(startDate:endDate:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "clickedQuitAfterFinishingDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
