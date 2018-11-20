@@ -15,6 +15,11 @@ For right now it only tracks days there were imported. It only marks a date impo
 
 Resetting the dates will allow messages to be imported on days that have already been imported. This may result in duplicates
 
+### macOS Mojave
+Open System Preferences > Security & Privacy > Full Disk Access
+Click +
+Locate iMessage Importer and add it
+
 ## KNOWN ISSUES:
 Make sure Don't Sign Code is the selected setting in Build Settings > Code Signing Identity
 When code signing is enabled, it looks like some sandbox restrictions are disabling access to the iMessage DB
